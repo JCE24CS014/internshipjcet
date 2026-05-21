@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 table=pd.read_csv("data/disney_movies.csv")
 print(table)
 
@@ -60,3 +61,12 @@ comedy_movies = table[table['genre'] == 'Comedy']
 top_comedy = comedy_movies.sort_values(by='total_gross', ascending=False)
 
 print(top_comedy[['movie_title', 'total_gross']].head(5))
+genre_count = table.groupby('genre').size()
+
+genre_count.plot(kind='bar')
+
+plt.title("Movies in Each Genre")
+plt.xlabel("Genre")
+plt.ylabel("Number of Movies")
+
+plt.show()
